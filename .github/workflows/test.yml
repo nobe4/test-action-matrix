@@ -9,5 +9,6 @@ jobs:
     strategy:
       matrix:
         word: [ "A", "B" ]
+        verb: [ "say", "shout" ]
     steps:
-      - run: "echo '${{matrix.word}}'"
+      - run: "echo '${{matrix.verb}} ${{matrix.word}}'"
