@@ -12,11 +12,12 @@ jobs:
            fetch-depth: 1
        - id: set-matrix
          run: |
-          content=`cat ./matrix.json`
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo "::set-output name=matrix::$content"
+          #content=`cat ./matrix.json`
+          #content="${content//'%'/'%25'}"
+          #content="${content//$'\n'/'%0A'}"
+          #content="${content//$'\r'/'%0D'}"
+          #echo "::set-output name=matrix::$content"
+          echo "::set-output name=matrix::[1,2,3]"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       
