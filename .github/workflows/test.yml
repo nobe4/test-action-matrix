@@ -6,5 +6,8 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        word: [ "A", "B" ]
     steps:
-      - run: "echo 'a'"
+      - run: "echo '${{matrix.word}}'"
