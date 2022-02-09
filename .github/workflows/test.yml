@@ -17,7 +17,7 @@ jobs:
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
           echo "::set-output name=matrix::$content"
-       - run: 'echo "${{fromJson(steps.set-matrix.outputs.matrix)}}"'        
+       - run: 'echo "${{ toJsonfromJson(steps.set-matrix.outputs.matrix)) }}"'        
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       
