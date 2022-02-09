@@ -9,13 +9,7 @@ jobs:
     steps:
        - id: set-matrix
          run: |
-          ls .
-          echo "---"
-          ls ..
-          echo "---"
-          ls ../..
-          echo "---"
-          content=`cat ./test-action-matrix/matrix.json`
+          content=`cat ../test-action-matrix/matrix.json`
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
