@@ -17,14 +17,14 @@ jobs:
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
           echo "::set-output name=matrix::$content"
-       - run: 'echo "${{ toJsonfromJson(steps.set-matrix.outputs.matrix)) }}"'        
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       
-#  run:
-#    needs: setup
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix: ${{ fromJSON(needs.provide_packages_json.outputs.matrix) }}
-#    steps:
-#      - run: "echo '${{matrix.verb}} ${{matrix.word}}'"
+  run:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        word: ${{ fromJSON(needs.provide_packages_json.outputs.matrix) }}
+    steps:
+      - run: "echo '${{matrix.verb}} ${{matrix.word}}'"
