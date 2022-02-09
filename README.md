@@ -16,7 +16,7 @@ It works in 2 steps:
 
 ![image](https://user-images.githubusercontent.com/2452791/153205223-478b6de3-b58f-42d5-9692-21887988b32b.png)
 
-**Notes**: The JSON has to be minified before the `echo "::set-output name=matrix::..."`. Here I've minified [`matrix.json`](matrix.json) but it's also possible to do it in the action like so:
+**Note**: The JSON has to be minified before the `echo "::set-output name=matrix::..."`. Here I've minified [`matrix.json`](matrix.json) but it's also possible to do it in the action like so:
 
 ```yaml
 run: |
