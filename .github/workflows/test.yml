@@ -23,8 +23,7 @@ jobs:
   run:
     needs: setup
     runs-on: ubuntu-latest
-    #strategy:
-    #  matrix: 
+    strategy:
+      matrix: ${{ toJson(fromJSON(needs.setup.outputs.matrix)) }}
     steps:
-      #- run: "echo '${{matrix.verb}} ${{matrix.word}}'"
-      - run: "echo '${{ toJson(fromJSON(needs.setup.outputs.matrix)) }}'"
+      - run: "echo '${{matrix.verb}} ${{matrix.word}}'"
