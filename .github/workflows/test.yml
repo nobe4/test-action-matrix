@@ -24,7 +24,6 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     strategy:
-      matrix: 
-        word: ${{ fromJSON(needs.provide_packages_json.outputs.matrix) }}
+      matrix: ${{ fromJSON(needs.provide_packages_json.outputs.matrix) }}
     steps:
       - run: "echo '${{matrix.verb}} ${{matrix.word}}'"
