@@ -1,1 +1,10 @@
+on:
+  push:
+    branches:
+    - master
 
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - run: "echo 'a'"
