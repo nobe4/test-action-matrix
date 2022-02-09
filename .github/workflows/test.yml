@@ -6,9 +6,22 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        word: [ "A", "B" ]
-        verb: [ "say", "shout" ]
     steps:
-      - run: "echo '${{matrix.verb}} ${{matrix.word}}'"
+       - id: set-matrix
+         run: |
+          content=`cat matrix.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo "::set-output name=matrix::$content"
+       - run: 'echo "${{fromJson(steps.set-matrix.outputs.matrix)}}"'        
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      
+#  run:
+#    needs: setup
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix: ${{ fromJSON(needs.provide_packages_json.outputs.matrix) }}
+#    steps:
+#      - run: "echo '${{matrix.verb}} ${{matrix.word}}'"
