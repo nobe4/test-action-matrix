@@ -9,6 +9,11 @@ jobs:
     steps:
        - id: set-matrix
          run: |
+          pwd
+          ls
+          ls ..
+          ls ../..
+          ls ../../..
           content=`cat ../../matrix.json`
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
