@@ -1,6 +1,8 @@
 # test-action-matrix
 
-POC to use a file as source for the `strategy:matrix`.
+POC to use different strategies for filling `strategy:matrix`.
+
+## Notes about `json`.
 
 It works in 2 steps:
 
