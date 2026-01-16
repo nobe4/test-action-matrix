@@ -1,21 +1,23 @@
 on:
+  workflow_dispatch:
+  pull_request:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v2
-         with:
-           fetch-depth: 1
-       - id: set-matrix
-         run: |
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - id: set-matrix
+        run: |
           echo "::set-output name=matrix::$(cat ./matrix.json)"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
-      
+
   run:
     needs: setup
     runs-on: ubuntu-latest
