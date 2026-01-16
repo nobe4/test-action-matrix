@@ -15,7 +15,7 @@ jobs:
       - id: set-matrix
         run: |
           files=$(echo "{\"files\": [\"$(find script -type f | xargs | sed 's/ /", "/g')\"]}")
-          echo "::set-output name=matrix::${files}"
+          echo "matrix=${files}" >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
