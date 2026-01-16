@@ -27,4 +27,9 @@ jobs:
       matrix:
         file: ${{ fromJSON(needs.setup.outputs.files) }}
     steps:
-      - run: "echo ${{matrix.file}}"
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - run: |
+          echo "${{matrix.file}}"
+          bash "${{matrix.file}}"
