@@ -25,4 +25,4 @@ jobs:
     strategy:
       matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
     steps:
-      - run: "echo ${{matrix.file}}"
+      - run: "echo ${{matrix}}"
