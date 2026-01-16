@@ -14,16 +14,17 @@ jobs:
           fetch-depth: 1
       - id: set-matrix
         run: |
-          files=$(echo "{\"files\": [\"$(find script -type f | xargs | sed 's/ /", "/g')\"]}")
+          files=$(echo "[\"$(find script -type f | xargs | sed 's/ /", "/g')\"]")
           echo "${files}"
-          echo "matrix=${files}" >> $GITHUB_OUTPUT
+          echo "files=${files}" >> $GITHUB_OUTPUT
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      files: ${{ steps.set-matrix.outputs.files }}
 
   run:
     needs: setup
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
+      matrix:
+        file: ${{ fromJSON(needs.setup.outputs.files) }}
     steps:
-      - run: "echo ${{matrix}}"
+      - run: "echo ${{matrix.file}}"
