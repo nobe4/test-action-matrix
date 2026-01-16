@@ -1,0 +1,35 @@
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - id: set-matrix
+        run: |
+          files=$(echo "[\"$(find script -type f | xargs | sed 's/ /", "/g')\"]")
+          echo "${files}"
+          echo "files=${files}" >> $GITHUB_OUTPUT
+    outputs:
+      files: ${{ steps.set-matrix.outputs.files }}
+
+  run:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file: ${{ fromJSON(needs.setup.outputs.files) }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - run: |
+          echo "${{matrix.file}}"
+          bash "${{matrix.file}}"
